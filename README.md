@@ -1,7 +1,7 @@
-colabmill
+Colabmill
 =======================================================================================================================
 
-**colabmill** is a tool for parameterizing, executing, and analyzing
+**Colabmill** is a tool for parameterizing, executing, and analyzing
 Colab-flavored Jupyter Notebooks.
 
 Colabmill lets you do what Papermill does, but optimized for Colab-flavored Jupyter Notebooks:
@@ -27,7 +27,7 @@ pip install git+https://github.com/CourierKyn/colabmill#egg=colabmill[all]
 ## Python Version Support
 
 This library currently supports Python 3.6+ versions. As minor Python
-versions are officially sunset by the Python org colabmill will similarly
+versions are officially sunset by the Python org Colabmill will similarly
 drop support in the future.
 
 ## Usage
@@ -38,12 +38,12 @@ To parameterize your notebook designate a cell with the comment ``#@param [...]`
 
 ![parameterize](docs/img/parameterize.png)
 
-Codemill looks for the ``#@param`` cell and treats this cell as defaults for the parameters passed in at execution 
+Colabmill looks for the ``#@param`` cell and treats this cell as defaults for the parameters passed in at execution 
 time. Colabmill will add a new cell tagged with ``#@title Parameters injected`` with input parameters in order to 
 overwrite the values with ``#@param``. If no cell contains ``#@param`` the injected cell will be inserted at the top of 
 the notebook.
 
-Additionally, if you rerun notebooks through colabmill and it will reuse the ``#@title Parameters injected`` cell from 
+Additionally, if you rerun notebooks through Colabmill and it will reuse the ``#@title Parameters injected`` cell from 
 the prior run. In this case Colabmill will replace the old ``#@title Parameters injected`` cell with the new run's 
 inputs.
 
