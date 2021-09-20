@@ -26,7 +26,7 @@ def version():
     with open(here + '/papermill/version.py', 'r') as ver:
         for line in ver.readlines():
             if line.startswith('version ='):
-                version = line.split(' = ')[-1].strip()[1:-1]
+                version = f"0.0.0+{line.split(' = ')[-1].strip()[1:-1]}"
                 try:
                     version += subprocess.check_output(['git', 'rev-parse',
                                                         'HEAD']).decode('utf-8')
