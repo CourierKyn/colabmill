@@ -7,7 +7,7 @@ from .iorw import get_pretty_path, load_notebook_node, local_file_io_cwd
 from .log import logger
 from .parameterize import add_builtin_parameters, parameterize_path
 from .translators import papermill_translators
-from .utils import any_form_cell, find_first_form_cell_index
+from .utils import any_form_cell, find_first_form_cell_index, nb_kernel_name, nb_language
 
 
 def _open_notebook(notebook_path, parameters):
@@ -19,7 +19,7 @@ def _open_notebook(notebook_path, parameters):
         return load_notebook_node(input_path)
 
 
-def _infer_parameters(nb):
+def _infer_parameters(nb, kernel_name, language):
     """Infer the notebook parameters.
 
     Parameters
@@ -38,8 +38,8 @@ def _infer_parameters(nb):
     if parameter_cell_idx < 0:
         return params
     parameter_cell = nb.cells[parameter_cell_idx]
-    kernel_name = nb.metadata.kernelspec.name
-    language = nb.metadata.kernelspec.language
+    kernel_name = nb_kernel_name(nb, kernel_name)
+    language = nb_language(nb, language)
 
     translator = papermill_translators.find_translator(kernel_name, language)
     try:
@@ -54,7 +54,7 @@ def _infer_parameters(nb):
     return params
 
 
-def display_notebook_help(ctx, notebook_path, parameters):
+def display_notebook_help(ctx, notebook_path, parameters, kernel_name=None, language=None):
     """Display help on notebook parameters.
 
     Parameters
@@ -73,7 +73,7 @@ def display_notebook_help(ctx, notebook_path, parameters):
         click.echo("\n  No cell containing '#@param'")
         return 1
 
-    params = _infer_parameters(nb)
+    params = _infer_parameters(nb, kernel_name, language)
     if params:
         for param in params:
             p = param._asdict()
@@ -99,7 +99,7 @@ def display_notebook_help(ctx, notebook_path, parameters):
     return 0
 
 
-def inspect_notebook(notebook_path, parameters=None):
+def inspect_notebook(notebook_path, parameters=None, kernel_name=None, language=None):
     """Return the inferred notebook parameters.
 
     Parameters
@@ -119,5 +119,5 @@ def inspect_notebook(notebook_path, parameters=None):
 
     nb = _open_notebook(notebook_path, parameters)
 
-    params = _infer_parameters(nb)
+    params = _infer_parameters(nb, kernel_name, language)
     return {p.name: p._asdict() for p in params}
