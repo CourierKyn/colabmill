@@ -179,7 +179,9 @@ class PythonTranslator(Translator):
 
     @classmethod
     def comment(cls, cmt_str):
-        return '# {}'.format(cmt_str).strip()
+        if not cmt_str.startswith('#'):
+            cmt_str = '# {}'.format(cmt_str)
+        return cmt_str.strip()
 
     @classmethod
     def codify(cls, parameters, comment='Parameters'):

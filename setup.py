@@ -10,6 +10,8 @@ https://github.com/pypa/sampleproject
 
 """
 import os
+import subprocess
+
 from setuptools import setup
 
 
@@ -24,7 +26,13 @@ def version():
     with open(here + '/papermill/version.py', 'r') as ver:
         for line in ver.readlines():
             if line.startswith('version ='):
-                return line.split(' = ')[-1].strip()[1:-1]
+                version = line.split(' = ')[-1].strip()[1:-1]
+                try:
+                    version += subprocess.check_output(['git', 'rev-parse',
+                                                        'HEAD']).decode('utf-8')
+                except subprocess.CalledProcessError:
+                    pass
+                return version
     raise ValueError('No version found in papermill/version.py')
 
 
@@ -85,6 +93,7 @@ setup(
         'Tracker': 'https://github.com/nteract/papermill/issues',
     },
     classifiers=[
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
         'Intended Audience :: Science/Research',

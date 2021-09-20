@@ -5,7 +5,7 @@ from .log import logger
 from .exceptions import PapermillMissingParameterException
 from .iorw import read_yaml_file
 from .translators import translate_parameters
-from .utils import find_first_tagged_cell_index, nb_kernel_name, nb_language
+from .utils import find_first_form_cell_index, nb_kernel_name, nb_language
 
 from uuid import uuid4
 from datetime import datetime
@@ -89,8 +89,8 @@ def parameterize_notebook(
         newcell.metadata['jupyter'] = newcell.get('jupyter', {})
         newcell.metadata['jupyter']['source_hidden'] = True
 
-    param_cell_index = find_first_tagged_cell_index(nb, 'parameters')
-    injected_cell_index = find_first_tagged_cell_index(nb, 'injected-parameters')
+    param_cell_index = find_first_form_cell_index(nb, '#@param')
+    injected_cell_index = find_first_form_cell_index(nb, '#@title Parameters injected')
     if injected_cell_index >= 0:
         # Replace the injected cell with a new version
         before = nb.cells[:injected_cell_index]

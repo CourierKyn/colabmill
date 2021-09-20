@@ -12,10 +12,10 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![papermill](https://snyk.io/advisor/python/papermill/badge.svg)](https://snyk.io/advisor/python/papermill)
 
-**papermill** is a tool for parameterizing, executing, and analyzing
-Jupyter Notebooks.
+**colabmill** is a tool for parameterizing, executing, and analyzing
+Colab-flavored Jupyter Notebooks.
 
-Papermill lets you:
+Colabmill lets you what Papermill does, but optimized for Colab-flavored Jupyter Notebooks:
 
 -   **parameterize** notebooks
 -   **execute** notebooks

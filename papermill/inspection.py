@@ -7,7 +7,7 @@ from .iorw import get_pretty_path, load_notebook_node, local_file_io_cwd
 from .log import logger
 from .parameterize import add_builtin_parameters, parameterize_path
 from .translators import papermill_translators
-from .utils import any_tagged_cell, find_first_tagged_cell_index
+from .utils import any_tagged_cell, find_first_form_cell_index
 
 
 def _open_notebook(notebook_path, parameters):
@@ -34,7 +34,7 @@ def _infer_parameters(nb):
     """
     params = []
 
-    parameter_cell_idx = find_first_tagged_cell_index(nb, "parameters")
+    parameter_cell_idx = find_first_form_cell_index(nb, "#@param")
     if parameter_cell_idx < 0:
         return params
     parameter_cell = nb.cells[parameter_cell_idx]

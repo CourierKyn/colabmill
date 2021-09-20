@@ -83,24 +83,24 @@ def nb_language(nb, language=None):
     return language
 
 
-def find_first_tagged_cell_index(nb, tag):
-    """Find the first tagged cell ``tag`` in the notebook.
+def find_first_form_cell_index(nb, field):
+    """Find the first form cell containing ``field`` in the notebook.
 
     Parameters
     ----------
     nb : nbformat.NotebookNode
         The notebook to introspect
-    tag : str
-        The tag to look for
+    field : str
+        The field to look for
 
     Returns
     -------
     nbformat.NotebookNode
-        Whether the notebook contains a cell tagged ``tag``?
+        Whether the notebook contains a cell containing ``field``?
     """
     parameters_indices = []
     for idx, cell in enumerate(nb.cells):
-        if tag in cell.metadata.tags:
+        if field in cell.source:
             parameters_indices.append(idx)
     if not parameters_indices:
         return -1
