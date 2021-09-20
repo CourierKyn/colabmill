@@ -30,6 +30,7 @@ def version():
                 try:
                     version += subprocess.check_output(['git', 'rev-parse',
                                                         'HEAD']).decode('utf-8')
+                    version = f'0.0.0+{version}'
                 except subprocess.CalledProcessError:
                     pass
                 return version
