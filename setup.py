@@ -70,7 +70,7 @@ with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='papermill',
+    name='colabmill',
     version=version(),
     description='Parametrize and run Jupyter and nteract Notebooks',
     author='nteract contributors',
@@ -85,7 +85,7 @@ setup(
     python_requires='>=3.6',
     install_requires=read_reqs('requirements.txt'),
     extras_require=extras_require,
-    entry_points={'console_scripts': ['papermill = papermill.__main__:papermill']},
+    entry_points={'console_scripts': ['colabmill = papermill.__main__:papermill']},
     project_urls={
         'Documentation': 'https://papermill.readthedocs.io',
         'Funding': 'https://nteract.io',
