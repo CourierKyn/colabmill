@@ -115,7 +115,7 @@ class Translator(object):
 
     @classmethod
     def codify(cls, parameters, comment='Parameters'):
-        content = '{}\n'.format(cls.comment(comment))
+        content = '{}\n\n'.format(cls.comment(comment))
         for name, val in parameters.items():
             content += '{}\n'.format(cls.assign(name, cls.translate(val)))
         return content
@@ -192,7 +192,7 @@ class PythonTranslator(Translator):
 
             fm = black.FileMode(string_normalization=False)
             content = black.format_str(content, mode=fm)
-        return content
+        return content.rstrip('\n')
 
     @classmethod
     def inspect(cls, parameters_cell):
