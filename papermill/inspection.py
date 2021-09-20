@@ -7,7 +7,7 @@ from .iorw import get_pretty_path, load_notebook_node, local_file_io_cwd
 from .log import logger
 from .parameterize import add_builtin_parameters, parameterize_path
 from .translators import papermill_translators
-from .utils import any_tagged_cell, find_first_form_cell_index
+from .utils import any_form_cell, find_first_form_cell_index
 
 
 def _open_notebook(notebook_path, parameters):
@@ -69,8 +69,8 @@ def display_notebook_help(ctx, notebook_path, parameters):
     pretty_path = get_pretty_path(notebook_path)
     click.echo("\nParameters inferred for notebook '{}':".format(pretty_path))
 
-    if not any_tagged_cell(nb, "parameters"):
-        click.echo("\n  No cell tagged 'parameters'")
+    if not any_form_cell(nb, "#@param"):
+        click.echo("\n  No cell containing '#@param'")
         return 1
 
     params = _infer_parameters(nb)

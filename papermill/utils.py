@@ -10,22 +10,22 @@ from .exceptions import PapermillParameterOverwriteWarning
 logger = logging.getLogger('papermill.utils')
 
 
-def any_tagged_cell(nb, tag):
-    """Whether the notebook contains at least one cell tagged ``tag``?
+def any_form_cell(nb, field):
+    """Whether the notebook contains at least one cell containing ``field``?
 
     Parameters
     ----------
     nb : nbformat.NotebookNode
         The notebook to introspect
-    tag : str
-        The tag to look for
+    field : str
+        The field to look for
 
     Returns
     -------
     bool
-        Whether the notebook contains a cell tagged ``tag``?
+        Whether the notebook contains a cell containing ``field``?
     """
-    return any([tag in cell.metadata.tags for cell in nb.cells])
+    return any([field in cell.source for cell in nb.cells])
 
 
 def nb_kernel_name(nb, name=None):
