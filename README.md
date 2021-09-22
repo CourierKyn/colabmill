@@ -6,7 +6,7 @@ Colab-flavored Jupyter Notebooks.
 
 Colabmill lets you do what Papermill does, but optimized for Colab-flavored Jupyter Notebooks:
 
--   **parameterize** notebooks, following Colab form syntax
+-   **parameterize** notebooks, following Colab Form syntax
 -   **execute** notebooks online/offline
 
 ## Installation
