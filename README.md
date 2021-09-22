@@ -39,7 +39,7 @@ To parameterize your notebook designate a cell with the comment ``#@param [...]`
 ![parameterize](docs/img/parameterize.png)
 
 Colabmill looks for the ``#@param`` cell and treats this cell as defaults for the parameters passed in at execution 
-time. Colabmill will add a new cell tagged with ``#@title Parameters injected`` with input parameters in order to 
+time. Colabmill will add a new cell containing ``#@title Parameters injected`` with input parameters in order to 
 overwrite the values with ``#@param``. If no cell contains ``#@param`` the injected cell will be inserted at the top of 
 the notebook.
 
