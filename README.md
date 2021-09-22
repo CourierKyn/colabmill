@@ -14,14 +14,14 @@ Colabmill lets you do what Papermill does, but optimized for Colab-flavored Jupy
 From the command line:
 
 ``` {.sourceCode .bash}
-pip install git+https://github.com/CourierKyn/colabmill
+pip install "colabmill @ git+https://github.com/CourierKyn/colabmill"
 ```
 
 For all optional io dependencies, you can specify individual bundles
 like `s3`, or `azure` -- or use `all`
 
 ``` {.sourceCode .bash}
-pip install git+https://github.com/CourierKyn/colabmill#egg=colabmill[all]
+pip install "colabmill[all] @ git+https://github.com/CourierKyn/colabmill"
 ```
 
 ## Python Version Support
